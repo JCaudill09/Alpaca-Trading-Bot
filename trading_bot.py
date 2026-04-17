@@ -2,8 +2,8 @@ import alpaca_trade_api as tradeapi
 import time
 
 # Insert your Alpaca API credentials here
-API_KEY = 'your_api_key'
-API_SECRET = 'your_api_secret'
+API_KEY = 'PKR6GIVN5X26BQIWMEDVZDIH4F'
+API_SECRET = 'Fu5bTb4BhoVBRwQLeDBPWNV9AnaxPhzenTkXyGqmFkkc'
 BASE_URL = 'https://paper-api.alpaca.markets'
 
 # Initialize Alpaca API
