@@ -1,15 +1,26 @@
-def is_eligible_for_trading(stock_price, volume):
-    """
-    Check if the stock price is within the valid range and if the volume is adequate.
-    """
-    return 2 <= stock_price <= 18 and volume > 0
+def get_account_buying_power():
+    # Retrieve the available cash from the account
+    # Replace the logic below with the actual API call to get the account balance
+    account_info = api.get_account()
+    return float(account_info.cash)
 
-def place_50_dollar_order(stock_price, volume):
-    """
-    Calculate the number of shares to buy for $50 orders and validate eligibility.
-    """
-    if is_eligible_for_trading(stock_price, volume):
-        shares_to_buy = 50 / stock_price
-        return shares_to_buy
+def calculate_order_amount():
+    available_balance = get_account_buying_power()
+    if available_balance < 30:
+        return 0
+    elif available_balance < 50:
+        return available_balance
     else:
-        raise ValueError("Stock price or volume is not adequate for trading.")
+        return 50
+
+def place_50_dollar_order():
+    order_amount = calculate_order_amount()
+    if order_amount > 0:
+        # Place buy order with the calculated amount
+        api.submit_order(
+            symbol='AAPL',
+            qty=order_amount,
+            side='buy',
+            type='market',
+            time_in_force='gtc'
+        )
